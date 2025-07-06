@@ -17,7 +17,7 @@ bot.onText(COMMANDS.start, async (message) => {
     const { chatId, firstName } = getMetaData(message);
 
     try {
-        const mainPhoto = await fs.createReadStream(path.join(__dirname, 'assets', 'main-photo.jpg'));
+        // const mainPhoto = await fs.createReadStream(path.join(__dirname, 'assets', 'main-photo.jpg'));
 
         const caption = `
 👻 Бу! Испугался? Не бойся — я друг!
@@ -30,10 +30,7 @@ ${firstName}, приветствую тебя, будущий frontend-разр�
     - ${COMMANDS.vote} - для выбора времени следующего занятия!
 `.trim();
 
-        await bot.sendPhoto(chatId, mainPhoto, {
-            caption: caption,
-            parse_mode: 'Markdown'
-        });
+        await bot.sendMessage(chatId,caption);
     }
     catch (error) {
         await bot.sendMessage(chatId, 'Что то пошло не так!')
